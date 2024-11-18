@@ -6,6 +6,6 @@ export const getData = async (data:any, setData:any) => {
     } catch (error) {
       console.error(error);
     } finally {
-      console.log(data)
+      console.log('Successful read database')
     }
 }

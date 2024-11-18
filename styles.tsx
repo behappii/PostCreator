@@ -1,12 +1,13 @@
-import { Platform, StatusBar, StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   main_container: {
-    flex: 1,
-    alignItems: Platform.OS == 'web' ? 'center':'stretch',
+    flex: 1
   },
   container: {
-    flex: 1
+    flex: 1,
+    minWidth: Platform.OS == 'web' ? '50%':0,
+    alignSelf: Platform.OS == 'web' ? 'center':'stretch'
   },
   input_container: {
     paddingBottom: '5%'
