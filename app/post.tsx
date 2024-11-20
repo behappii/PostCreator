@@ -3,9 +3,11 @@ import { GetPostData } from "@/components/GetPostData";
 import { ChangeDataBool, isGotData } from "@/components/IsGotData";
 import { styles } from "@/styles";
 import { useRoute } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "expo-router";
 import { useState } from "react";
-import { Button, FlatList, ScrollView, Text, TextInput, View } from "react-native";
+import { Button, FlatList, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { RootStackParamList } from "./navigator";
 
 export default function Post() {
 
@@ -16,7 +18,7 @@ export default function Post() {
     const [postData, setPostData] = useState([]);
     const [commentsData, setCommentsData] = useState([]);
 
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
     if ( isGotData == false ) {
       GetPostData( postId, postData, setPostData, commentsData, setCommentsData );
@@ -30,7 +32,9 @@ export default function Post() {
   return (
     <ScrollView style = { styles.container }>
       <View style = { styles.titles_container }>
-        <Text style = { styles.text_style } onPress = { () => { ChangeDataBool(false); navigation.navigate('(tabs)/index')} }>Назад</Text>
+        <TouchableOpacity>
+          <Text style = { styles.text_style } onPress = { () => { ChangeDataBool(false); navigation.navigate('index')} }>Назад</Text>
+        </TouchableOpacity>
         <FlatList
             data= { postData }
             keyExtractor = { ( { id } ) => id }

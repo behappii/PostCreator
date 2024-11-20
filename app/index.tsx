@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from '@/styles';
 import { useState } from 'react';
 import { Button, FlatList, TextInput } from 'react-native';
@@ -6,6 +6,8 @@ import { sendData } from '@/components/CreateNewPost';
 import { getData } from '@/components/GetData';
 import { useNavigation } from '@react-navigation/native';
 import { ChangeDataBool, isGotData } from '@/components/IsGotData';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from './navigator';
 
 export default function Index() {
 
@@ -13,7 +15,7 @@ export default function Index() {
   const [ title, onChangeTitle ] = useState('');
   const [ body, onChangeBody ] = useState('');
   const [ data, setData ] = useState([]);
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   if ( isGotData == false ) {
     getData( data, setData );
@@ -38,10 +40,13 @@ export default function Index() {
             keyExtractor = { ( { id } ) => id }
             renderItem = { ( { item }: any ) => (
               <View>
-                <Text onPress = { () => {
-                  ChangeDataBool(false);
-                  navigation.navigate( 'post', { id: item.id } );
-                  }} style={ styles.text_style }>{ item.title }</Text>
+                <TouchableOpacity>
+                  <Text onPress = { () => {
+                    ChangeDataBool(false);
+                    navigation.navigate( 'post', { id: item.id } );
+                    }} style={ styles.text_style }>{ item.title }
+                  </Text>
+                </TouchableOpacity>
               </View>
               )}/>
         </View>
