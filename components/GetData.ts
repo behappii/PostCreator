@@ -6,7 +6,6 @@ export const getData = async (data:any, setData:any) => {
       const response = await fetch( DataBase + '/posts' )
       const json = await response.json();
       setData(json.reverse());
-      console.log('[Database fetch]', json)
     } catch (error) {
       console.error(error);
     } finally {

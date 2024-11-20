@@ -20,7 +20,6 @@ export function CreateNewPost(id: string, title:string, body:string, onButtonPre
     })
     .then(response => response.json()))
     .then(() => {onButtonPress('Отправлено!'); setTimeout(() => onButtonPress(''), 3000)})
-    .then(() => { console.log('[Database POST] ' + JSON.stringify(formData)) })
     .then(() => {console.log('[Success]')})
   } if (title == '' || body == '' ) {
     onButtonPress('Ошибка! Заполните поле ' + (title == '' ? '"Название поста"':'"Полный текст"'))

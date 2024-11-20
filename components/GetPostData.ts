@@ -14,7 +14,6 @@ export const GetPostData = async (postId:string, postData:any, setPostData:any, 
       const jsonComments = await responseComments.json();
       setPostData(jsonPost);
       setCommentsData(jsonComments.reverse())
-      console.log('[Database fetch]', jsonPost, jsonComments);
     }
     catch (error) {
       console.error(error)

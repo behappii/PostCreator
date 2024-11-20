@@ -15,5 +15,5 @@ export async function CreateNewComment( postId: string, id: string, text:string 
             body: JSON.stringify(formData)
         })
         .then( response => response.json() ) );
-    console.log('[Success] ' + JSON.stringify(formData));
+    console.log('[Success]');
 }
