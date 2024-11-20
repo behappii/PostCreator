@@ -1,11 +1,15 @@
+import { DataBase } from "@/constants/Links";
+
 export const getData = async (data:any, setData:any) => {
     try {
-      const response = await fetch("http://192.168.1.106:3000/posts")
+      console.log('[Trying to fetch database]')
+      const response = await fetch( DataBase + '/posts' )
       const json = await response.json();
       setData(json.reverse());
+      console.log('[Database fetch]', json)
     } catch (error) {
       console.error(error);
     } finally {
-      console.log('Successful read database')
+      console.log('[Success]')
     }
 }

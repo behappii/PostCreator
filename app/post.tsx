@@ -5,29 +5,34 @@ import { styles } from "@/styles";
 import { useRoute } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, FlatList, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { RootStackParamList } from "./navigator";
 
 export default function Post() {
 
-    const route = useRoute();
-    const { id }:any = route.params;
-    const postId = id;
-    const [text, onChangeText] = useState('');
-    const [postData, setPostData] = useState([]);
-    const [commentsData, setCommentsData] = useState([]);
+  useEffect( () => {
+    navigation.addListener('beforeRemove', e => {
+      e.preventDefault();
+      console.log('[Going back]');
+      ChangeDataBool(false);
+      navigation.dispatch(e.data.action);
+    })
+  })
 
-    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const route = useRoute();
+  const { id }:any = route.params;
+  const postId = id;
+  const [text, onChangeText] = useState('');
+  const [postData, setPostData] = useState([]);
+  const [commentsData, setCommentsData] = useState([]);
 
-    if ( isGotData == false ) {
-      GetPostData( postId, postData, setPostData, commentsData, setCommentsData );
-      ChangeDataBool(true);
-      console.log('got post data');
-    }
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
-
-    console.log( id );
+  if ( isGotData == false ) {
+    GetPostData( postId, postData, setPostData, commentsData, setCommentsData );
+    ChangeDataBool(true);
+  };
 
   return (
     <ScrollView style = { styles.container }>

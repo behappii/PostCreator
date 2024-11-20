@@ -1,6 +1,7 @@
 import { Alert } from "react-native";
 import { GenerateUUID } from "./GenerateUUID";
 import { getData } from "./GetData";
+import { DataBase } from "@/constants/Links";
 
 export function sendData(body:string, data:any, setData:any, title:string, onButtonPress:any) {
   onButtonPress("Отправка поста...");
@@ -10,8 +11,8 @@ export function sendData(body:string, data:any, setData:any, title:string, onBut
 export function CreateNewPost(id: string, title:string, body:string, onButtonPress:any) {
   if (title !== '' && body !== '') { 
     const formData = {"id": id, "title": title, "body": body}
-    console.log('Trying to write to database: ' + JSON.stringify(formData))
-  return (fetch("http://192.168.1.106:3000/posts",
+    console.log('[Trying to post to database] ' + JSON.stringify(formData))
+  return (fetch(DataBase + '/posts',
     {
       method: "POST",
       headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -19,7 +20,8 @@ export function CreateNewPost(id: string, title:string, body:string, onButtonPre
     })
     .then(response => response.json()))
     .then(() => {onButtonPress('Отправлено!'); setTimeout(() => onButtonPress(''), 3000)})
-    .then(() => { console.log('Sent successful: ' + JSON.stringify(formData)) })
+    .then(() => { console.log('[Database POST] ' + JSON.stringify(formData)) })
+    .then(() => {console.log('[Success]')})
   } if (title == '' || body == '' ) {
     onButtonPress('Ошибка! Заполните поле ' + (title == '' ? '"Название поста"':'"Полный текст"'))
     Alert.alert('Ошибка: поле не заполнено', ("Заполните поле " + (title == '' ? '"Название поста"':'"Полный текст"')))

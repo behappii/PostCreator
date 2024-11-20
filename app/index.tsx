@@ -26,22 +26,31 @@ export default function Index() {
     <View style = { styles.main_container }>
       <ScrollView style = { styles.container }>
         <View style = { styles.input_container }>
+          <View style = { styles.button_style }>
+          </View>
           <TextInput style = { styles.input_field } placeholder = 'Название поста' onChangeText = { onChangeTitle } placeholderTextColor = 'gray' />
           <TextInput style = { styles.input_field } placeholder = 'Полный текст' onChangeText = { onChangeBody } placeholderTextColor = 'gray'/>
-          <View style={styles.button_style}>
-            <Button onPress={() => { sendData( body, data, setData, title, onButtonPress ) } } title = 'Добавить пост'/>
+          <View style = { [ styles.button_style, { flexDirection: 'row', alignSelf: 'center' } ] }>
+            <View >
+              <Button onPress={() => { sendData( body, data, setData, title, onButtonPress ) } } title = 'Добавить пост'/>
+            </View>
+            <View style = {{ marginHorizontal: '2%' }}/>
+            <View>
+              <Button onPress = { () => { getData(data, setData); navigation.navigate('index') } } title = 'Перезагрузить'></Button>
+            </View>
           </View>
           <Text style = { { color: text == 'Отправлено!' || text == 'Отправка поста...' ? 'green' : 'red', alignSelf: 'center' } }>{ text }</Text>
         </View>
         <Text style = { styles.title_style }>Последние посты</Text>
         <View style = { styles.titles_container }>
-          <FlatList
+          <FlatList 
             data= { data }
             keyExtractor = { ( { id } ) => id }
             renderItem = { ( { item }: any ) => (
               <View>
                 <TouchableOpacity>
                   <Text onPress = { () => {
+                    console.log('[Goin to post]', item.id);
                     ChangeDataBool(false);
                     navigation.navigate( 'post', { id: item.id } );
                     }} style={ styles.text_style }>{ item.title }
