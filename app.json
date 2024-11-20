@@ -20,7 +20,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.behappii.PostCreator"
     },
     "web": {
       "bundler": "metro",
@@ -32,6 +33,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "11cecd4d-cbd6-4e18-a931-4f96b9f1ab6d"
+      }
+    },
+    "owner": "behappii"
   }
 }

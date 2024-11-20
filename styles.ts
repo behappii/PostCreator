@@ -7,7 +7,8 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     minWidth: Platform.OS == 'web' ? '50%':0,
-    alignSelf: Platform.OS == 'web' ? 'center':'stretch'
+    alignSelf: Platform.OS == 'web' ? 'center':'stretch',
+    backgroundColor: '#fff'
   },
   input_container: {
     paddingBottom: '5%'
@@ -17,7 +18,10 @@ export const styles = StyleSheet.create({
   input_field: {
     opacity: 1,
     paddingBottom: '5%',
-    margin: '2%'
+    marginVertical: '2%',
+    marginHorizontal: '2%',
+    paddingHorizontal: '3%',
+    backgroundColor: '#fdfdfd'
   },
   button_style: {
     paddingHorizontal: '25%'
@@ -28,7 +32,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: '3%',
     marginBlock: '1%',
     marginInline: '3%',
-    backgroundColor: '#fff',
+    backgroundColor: '#fdfdfd',
   },
   title_style: {
     paddingBottom: '5%',

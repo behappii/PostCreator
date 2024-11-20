@@ -8,8 +8,8 @@ const Stack = createStackNavigator();
 export default function App() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name = 'index' component={Index}/>
-            <Stack.Screen name = 'post' component={Post}/>
+            <Stack.Screen name = '(tabs)/index' component = { Index }/>
+            <Stack.Screen name = 'post' component = { Post }/>
         </Stack.Navigator>
     )
 }
