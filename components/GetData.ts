@@ -1,6 +1,6 @@
 import { DataBase } from "@/constants/Links";
 
-export const getData = async (data:any, setData:any) => {
+export const getData = async ( data: any, setData: any ) => {
     try {
       console.log('[Trying to fetch database]')
       const response = await fetch( DataBase + '/posts' )

@@ -1,6 +1,6 @@
 import { DataBase } from "@/constants/Links";
 
-export const GetPostData = async (postId:string, postData:any, setPostData:any, commentsData:any, setCommentsData:any) => {
+export const GetPostData = async ( postId: string, postData: any, setPostData: any, commentsData: any, setCommentsData: any ) => {
     const postUrl = DataBase + '/posts?id=' + postId;
     const commentsUrl = DataBase + '/comments?postId=' + postId;
 

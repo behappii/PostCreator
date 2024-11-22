@@ -8,10 +8,10 @@ export function sendData(body:string, data:any, setData:any, title:string, onBut
   CreateNewPost(GenerateUUID(32), title, body, onButtonPress)?.then(() => {getData(data, setData)})}
 
 
-export function CreateNewPost(id: string, title:string, body:string, onButtonPress:any) {
+function CreateNewPost(id: string, title:string, body:string, onButtonPress:any) {
   if (title !== '' && body !== '') { 
-    const formData = {"id": id, "title": title, "body": body}
-    console.log('[Trying to post to database] ' + JSON.stringify(formData))
+    const formData = {"id": id, "title": title, "body": body};
+    console.log('[Trying to post to database] ' + JSON.stringify(formData));
   return (fetch(DataBase + '/posts',
     {
       method: "POST",
